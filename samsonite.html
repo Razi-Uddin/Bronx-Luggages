@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Samsonite</title>
+    <style>
+        @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+        .topnav {
+            width: 100%;
+            height: 4vh;
+            background-color: rgb(0, 0, 88);
+            text-align: center;
+            color: rgba(214, 213, 213, 0.61);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .logo {
+            width: 50px;
+            margin-top: 15px;
+        }
+
+        .page-header {
+            border-bottom: none;
+            margin-top: -1px;
+            background-color: rgba(214, 213, 213, 0.253);
+        }
+
+        .page-header h1 a:hover {
+            text-decoration: none;
+        }
+
+        .navbar {
+            background-color: rgb(0, 0, 88);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-radius: 1px;
+            border: none;
+        }
+
+        .navbar-default .navbar-nav>li>a {
+            color: rgb(214, 213, 213);
+            font-weight: bold;
+        }
+
+        .navbar-default .navbar-nav>li>a:hover {
+            background-color: transparent;
+            color: darkred;
+            font-style: italic;
+            opacity: 0.5;
+        }
+        .dropdown .dropdown-menu{
+            background-color: rgb(0, 0, 88);
+            color: rgb(214, 213, 213);
+        }
+
+        .dropdown .dropdown-menu .dropdown-submenu a {
+            border: none;
+            box-shadow: none;
+            color: rgb(214, 213, 213) !important;
+        }
+
+        .dropdown .dropdown-menu {
+            border: none;
+            box-shadow: none;
+        }
+
+        .dropdown:hover .dropdown-menu .dropdown-submenu a {
+            color: rgb(0, 0, 88);
+            font-weight: bold;
+        }
+
+        .dropdown:hover .dropdown-menu .dropdown-submenu a:hover {
+            color: darkred !important;
+            font-style: italic;
+            font-weight: bold;
+            opacity: 0.5;
+        }
+
+
+
+        #button {
+            display: inline-block;
+            background-color: rgb(0, 0, 88);
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border-radius: 4px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            transition: background-color .3s,
+                opacity .5s, visibility .5s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        #button::after {
+            content: "\f077";
+            font-family: FontAwesome;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 2em;
+            line-height: 50px;
+            color: #fff;
+        }
+
+        #button:hover {
+            cursor: pointer;
+            background-color: rgba(163, 159, 159, 0.89);
+        }
+
+        #button:active {
+            background-color: #555;
+        }
+
+        #button.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #detail {
+            width: 100%;
+            height: auto;
+            background-color: rgba(214, 213, 213, 0.253);
+            border-radius: 20px;
+        }
+
+        #information {
+            text-align: center;
+            color: rgb(0, 0, 88);
+            font-family: 'Times New Roman';
+            font-size: 18px;
+        }
+
+
+
+        a img {
+            opacity: 1;
+        }
+
+        a:hover img {
+            opacity: 0.5;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        a h3,
+        #pp {
+            color: rgb(0, 0, 88);
+            margin-left: 8%;
+        }
+
+        a:hover h3 {
+            color: darkred;
+        }
+        
+        .index-social {
+            background-color: rgb(0, 0, 88);
+            color: rgba(214, 213, 213, 0.253);
+        }
+
+        .index-link h3 {
+            text-align: center;
+            color: rgb(0, 0, 88);
+            text-align: left;
+
+        }
+
+        .index-link {
+            background-color: rgba(214, 213, 213, 0.253);
+            color: rgb(0, 0, 88);
+        }
+
+        .index-link ul {
+            padding: 0px;
+        }
+
+        .index-link ul li {
+            list-style-type: none;
+        }
+
+        .index-link ul li a {
+            text-decoration: none;
+            font-size: 14px;
+            color: rgb(0, 0, 88);
+            display: block;
+            padding: 5px 0;
+            text-align: left;
+        }
+
+        .index-link ul li a:hover {
+            text-decoration: none;
+            color: darkred;
+            opacity: 0.5;
+            font-style: italic;
+        }
+
+        .copy-c {
+            padding-top: 15px;
+        }
+
+        .link-area a .fa {
+            padding: 5px;
+            font-size: 30px;
+            width: 50px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px 2px;
+            border-radius: 50%;
+        }
+
+        .link-area a .fa:hover {
+            opacity: 0.7;
+        }
+
+        .link-area a .fa-facebook {
+            color: darkblue;
+        }
+
+        .link-area a .fa-instagram {
+            color: #b40101;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav">
+        <p>Explore New' 23 collection with all new designs</p>
+    </div>
+
+
+    <div class="page-header">
+        <center>
+            <img src="images/bronx-luggage.png" alt="logo" class="logo">
+            <h1><a href="index.html" style="color: rgb(0, 0, 88); font-family: 'Times New Roman';">Bronx
+                    Luggage</a>
+            </h1>
+        </center>
+    </div>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+                    <span class="icon-bar" style="background-color: darkred;"></span>
+                    <span class="icon-bar" style="background-color: darkred;"></span>
+                    <span class="icon-bar" style="background-color: darkred;"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Brands<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a href="bric's.html">Bric's</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="briggsandriley.html">Briggs & Riley</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="samsonite.html">Samsonite</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="ricardo.html">Ricardo</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="delsey.html">Delsey</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="travelpro.html">Travelpro</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a href="laptopbags.html">Laptop Bags</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="handbags.html">Hand Bags</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="businessbags.html">Business Bags</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="rollingdufflebags.html">Rolling Duffle Bags</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="carryonluggage.html">Carryon Luggages</a>
+                            </li>
+
+                            <li class="dropdown-submenu">
+                                <a href="hardshellluggages.html">Hard Shell Luggages</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="sitemap.html">Site Map</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <a id="button"></a>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" id="detail">
+                <div class="col-md-6">
+                    <img src="images/samsoniteoutlet.jpg" alt="Samsonite Outlet"
+                        style="width: 100%; margin-top: 5%; height: 55vh;">
+                </div>
+                <div class="col-md-6" id="information">
+                    <h1 style="font-size: 42px;">Samsonite</h1>
+                    <p>Founded in 1910, Samsonite is the world leader in superior travel bags, luggage and accessories.
+                        Renowned for breakthrough research and development, Samsonite builds trusted, innovative and
+                        sustainable products that elevate the way we travel. Inspired by the past and built for the
+                        present, Samsonite’s purpose is to pack confidence into every single journey and believes that
+                        the people who experience the world will move it forward. <b> Strength of a Product:</b>
+                        Samsonite’s durable, long-lasting luggage is made to the highest standards and won’t let you
+                        down. <b> Timelessness of a Brand:</b> Samsonite is inspired by the past, devoted to the present
+                        and built to inspire a multi-generational future​. <b> Power of Travel:</b>
+                        Samsonite believes in the transformative power of travel and gives you the confidence to get out
+                        there. <b>Social Compliances:</b> Samsonite works to ensure that its supply chain reflects its
+                        values as a company. Samsonite expects its suppliers to treat their workers fairly, to provide
+                        them with a safe and healthy work environment and to protect environmental quality. ​​</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <h1 style="color: rgb(0, 0, 88); margin-left: 2%; font-weight: bold; text-align: center; font-family: constantia;">
+        BAGS</h1>
+    <div class="container">
+        <div class="row" style="margin-left: 5%;">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsoniteb1.html">
+                    <img src="images/samsonite/b1.jpg" alt="Bags" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Backpack</h3>
+                    <p id="pp" style="font-size: 16px;">Strap offer 4 different carry modes</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsoniteb2.html">
+                    <img src="images/samsonite/b2.jpg" alt="Bags" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Leather</h3>
+                    <p id="pp" style="font-size: 16px;">Pebbled leather and silver hardware</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsoniteb3.html">
+                    <img src="images/samsonite/b3.jpg" alt="Bags" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Business</h3>
+                    <p id="pp" style="font-size: 16px;">Toploader combines compartments</p>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsoniteb4.html">
+                    <img src="images/samsonite/b4.jpg" alt="Bags" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Double Compartment</h3>
+                    <p id="pp" style="font-size: 16px;">Multi-functional masterpiece</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsoniteb5.html">
+                    <img src="images/samsonite/b5.jpg" alt="Bags" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Duffle</h3>
+                    <p id="pp" style="font-size: 16px;">Holds as much as a trunk</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsoniteb6.html">
+                    <img src="images/samsonite/b6.jpg" alt="Bags" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Tote</h3>
+                    <p id="pp" style="font-size: 16px;">Business meeting to your next destination</p>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <br><br>
+
+    <h1 style="color: rgb(0, 0, 88); margin-left: 2%; font-weight: bold; text-align: center; font-family: constantia;">
+        LUGGAGES</h1>
+    <div class="container">
+        <div class="row" style="margin-left: 5%;">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsonitel1.html">
+                    <img src="images/samsonite/l1.jpg" alt="Luggage" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Carry-on</h3>
+                    <p id="pp" style="font-size: 16px;">Blend of fashion and technology</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsonitel2.html">
+                    <img src="images/samsonite/l2.jpg" alt="Luggage" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Carry-on</h3>
+                    <p id="pp" style="font-size: 16px;"> The leader in road warrior luggage</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsonitel3.html">
+                    <img src="images/samsonite/l3.jpg" alt="Luggage" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Novaire</h3>
+                    <p id="pp" style="font-size: 16px;">Durable hardside design</p>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsonitel4.html">
+                    <img src="images/samsonite/l4.jpg" alt="Luggage" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Ibon</h3>
+                    <p id="pp" style="font-size: 16px;">Central interior carry handle</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsonitel5.html">
+                    <img src="images/samsonite/l5.jpg" alt="Luggage" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Duffle</h3>
+                    <p id="pp" style="font-size: 16px;">Remarkable Capacity and Easy to Clean</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="samsonitel6.html">
+                    <img src="images/samsonite/l6.jpg" alt="Luggage" style="width:80%; height: 35vh; margin-top: 2%;">
+                    <h3>Armage</h3>
+                    <p id="pp" style="font-size: 16px;">Travel with perfect Wheeled Split Duffel</p>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <br><br><br><br>
+    <section class="index-link">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="link-area"><a href="index.html"
+                            style="text-decoration: none;color: rgb(0, 0, 88);">
+                            <img src="images/bronx-luggage.png" alt="Bronx Luggage"
+                                style="width: 50px; margin-left: 10%; margin-top: 2%;">
+                            <h4>Bronx Luggage</h4>
+                        </a>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="sitemap.html">Site Map</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="link-area">
+                        <h3>Brands</h3>
+                        <ul>
+                            <li><a href="bric's.html">Bric's</a></li>
+                            <li><a href="briggsandriley.html">Briggs & Riley</a></li>
+                            <li><a href="travelpro.html">Travelpro</a></li>
+                            <li><a href="samsonite.html">Samsonite</a></li>
+                            <li><a href="ricardo.html">Ricardo</a></li>
+                            <li><a href="delsey.html">Delsey</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="link-area">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="laptopbags.html">Laptop Bags</a></li>
+                            <li><a href="handbags.html">Hand Bags</a></li>
+                            <li><a href="businessbags.html">Business Bags</a></li>
+                            <li><a href="rollingdufflebags.html">Rolling Duffle</a></li>
+                            <li><a href="carryonluggage.html">Carry-on</a></li>
+                            <li><a href="hardshellluggages.html">Hard Shell</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="link-area">
+                        <br><br><br><br>
+
+                        <a href="https://www.facebook.com/bronxluggagestore/"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/bronxluggage/"><i class="fa fa-instagram"></i></a>
+                        <br><br>
+                        +1 954-968-3010
+                        <br>
+                        2900 W. Sample Road Pompano Beach, FL
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="index-social">
+        <div class="container">
+            <div class="row index-social-link text-center">
+                <p class="copy-c">Copyright © 2023 Bronx Luggage. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        var btn = $('#button');
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
+
+        btn.on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: 0 }, '300');
+        });
+    </script>
+
+</body>
+
+</html>

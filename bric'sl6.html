@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>X-Bag | Bric's</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <style>
+        @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+        .topnav {
+            width: 100%;
+            height: 4vh;
+            background-color: rgb(0, 0, 88);
+            text-align: center;
+            color: rgba(214, 213, 213, 0.61);
+        }
+
+        .logo {
+            width: 50px;
+            margin-top: 15px;
+        }
+
+        .page-header {
+            border-bottom: none;
+            margin-top: -1px;
+            background-color: rgba(214, 213, 213, 0.253);
+        }
+
+        .page-header h1 a:hover {
+            text-decoration: none;
+        }
+
+
+        .navbar {
+            background-color: rgb(0, 0, 88);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-radius: 1px;
+            border: none;
+        }
+
+        .navbar-default .navbar-nav>li>a {
+            color: rgb(214, 213, 213);
+            font-weight: bold;
+        }
+
+        .navbar-default .navbar-nav>li>a:hover {
+            background-color: transparent;
+            color: darkred;
+            font-style: italic;
+            opacity: 0.5;
+        }
+        .dropdown .dropdown-menu{
+            background-color: rgb(0, 0, 88);
+            color: rgb(214, 213, 213);
+        }
+
+        .dropdown .dropdown-menu .dropdown-submenu a {
+            border: none;
+            box-shadow: none;
+            color: rgb(214, 213, 213) !important;
+        }
+
+        .dropdown .dropdown-menu {
+            border: none;
+            box-shadow: none;
+        }
+
+        .dropdown:hover .dropdown-menu .dropdown-submenu a {
+            color: rgb(0, 0, 88);
+            font-weight: bold;
+        }
+
+        .dropdown:hover .dropdown-menu .dropdown-submenu a:hover {
+            color: darkred !important;
+            font-style: italic;
+            font-weight: bold;
+            opacity: 0.5;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #button {
+            display: inline-block;
+            background-color: rgb(0, 0, 88);
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border-radius: 4px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            transition: background-color .3s,
+                opacity .5s, visibility .5s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        #button::after {
+            content: "\f077";
+            font-family: FontAwesome;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 2em;
+            line-height: 50px;
+            color: #fff;
+        }
+
+        #button:hover {
+            cursor: pointer;
+            background-color: rgba(163, 159, 159, 0.89);
+        }
+
+        #button:active {
+            background-color: #555;
+        }
+
+        #button.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+
+        .gallery-img {
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.1);
+        }
+
+        .gallery-container {
+            height: 50vh;
+        }
+
+        .lightbox {
+            height: 80vh;
+            margin-left: -15%;
+            margin-top: 10px;
+        }
+
+        .gallery-images {
+            height: 80vh;
+            padding-right: 15px;
+        }
+
+        .gallery-images img {
+            height: 20vh;
+            margin-top: 15%;
+        }
+
+        h2 {
+            font-family: constantia;
+            color: rgb(0, 0, 88);
+            margin-top: 5%;
+        }
+
+        .stars {
+            color: #FFD700;
+            cursor: pointer;
+        }
+
+        .rating-stars-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .filled-stars {
+            color: #ffd900;
+        }
+
+        .empty-stars {
+            color: #ccc;
+        }
+
+        .index-social {
+            background-color: rgb(0, 0, 88);
+            color: rgba(214, 213, 213, 0.253);
+        }
+
+        .index-link h3 {
+            text-align: center;
+            color: rgb(0, 0, 88);
+            text-align: left;
+
+        }
+
+        .index-link {
+            background-color: rgba(214, 213, 213, 0.253);
+            color: rgb(0, 0, 88);
+        }
+
+        .index-link ul {
+            padding: 0px;
+        }
+
+        .index-link ul li {
+            list-style-type: none;
+        }
+
+        .index-link ul li a {
+            text-decoration: none;
+            font-size: 14px;
+            color: rgb(0, 0, 88);
+            display: block;
+            padding: 5px 0;
+            text-align: left;
+        }
+
+        .index-link ul li a:hover {
+            text-decoration: none;
+            color: darkred;
+            opacity: 0.5;
+            font-style: italic;
+        }
+
+        .copy-c {
+            padding-top: 15px;
+        }
+
+        .link-area a .fa {
+            padding: 5px;
+            font-size: 30px;
+            width: 50px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px 2px;
+            border-radius: 50%;
+        }
+
+        .link-area a .fa:hover {
+            opacity: 0.7;
+        }
+
+        .link-area a .fa-facebook {
+            color: darkblue;
+        }
+
+        .link-area a .fa-instagram {
+            color: #b40101;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav">
+        <p>Explore New' 23 collection with all new designs</p>
+    </div>
+
+    <div class="page-header">
+
+        <center>
+            <a href="index.html"><img src="images/bronx-luggage.png" alt="logo" class="logo"></a>
+            <h1><a href="index.html" style="color: rgb(0, 0, 88); font-family: 'Times New Roman';">Bronx
+                    Luggage</a>
+            </h1>
+        </center>
+    </div>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+                    <span class="icon-bar" style="background-color: darkred;"></span>
+                    <span class="icon-bar" style="background-color: darkred;"></span>
+                    <span class="icon-bar" style="background-color: darkred;"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Brands<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a href="bric's.html">Bric's</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="briggsandriley.html">Briggs & Riley</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="samsonite.html">Samsonite</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="ricardo.html">Ricardo</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="delsey.html">Delsey</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="travelpro.html">Travelpro</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a href="laptopbags.html">Laptop Bags</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="handbags.html">Hand Bags</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="businessbags.html">Business Bags</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="rollingdufflebags.html">Rolling Duffle Bags</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="carryonluggage.html">Carryon Luggages</a>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="hardshellluggages.html">Hard Shell Luggages</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="sitemap.html">Site Map</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <a id="button"></a>
+
+
+    <div class="container-fluid" style="background-color: rgba(214, 213, 213, 0.5)">
+        <div class="row">
+            <div class="col-xs-4 col-sm-2 col-md-2">
+                <div class="gallery-images">
+                    <img src="images/bric's/l6.jpg" alt="Gallery image 1" data-mdb-img="images/bric's/l6.jpg"
+                        class="gallery-img img-responsive active" />
+                    <img src="images/bric's/l6-1.jpg" alt="Gallery image 2" data-mdb-img="images/bric's/l6-1.jpg"
+                        class="gallery-img img-responsive" />
+                    <img src="images/bric's/l6-2.jpg" alt="Gallery image 3" data-mdb-img="images/bric's/l6-2.jpg"
+                        class="gallery-img img-responsive" />
+                </div>
+            </div>
+            <div class="col-xs-8 col-sm-4 col-md-4">
+                <div class="ecommerce-gallery gallery-container">
+                    <div class="lightbox">
+                        <img style="height: 80vh;" id="main-img" src="images/bric's/l6.jpg" alt="Gallery image"
+                            class="ecommerce-gallery-main-img active img-responsive" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <h2>X-Bag Spinner Wheel Frame</h2>
+                <br>
+                <h3 style="text-decoration: line-through; position: absolute;">$330.00</h3>
+                <h3 style="color: black; margin-left: 25%;">$264.00</h3>
+                <br>
+                <div id="rating-stars" class="rating-stars-container">
+                    <span class="glyphicon glyphicon-star stars" onclick="rateProduct(1)"></span>
+                    <span class="glyphicon glyphicon-star stars" onclick="rateProduct(2)"></span>
+                    <span class="glyphicon glyphicon-star stars" onclick="rateProduct(3)"></span>
+                    <span class="glyphicon glyphicon-star stars" onclick="rateProduct(4)"></span>
+                    <span class="glyphicon glyphicon-star stars" onclick="rateProduct(5)"></span>
+                </div>
+                <p id="rating-text"></p>
+                <p id="rating-count">Number of users who rated: <span id="count">0</span></p>
+                <div class="progress">
+                    <div id="rating-progress" class="progress-bar" role="progressbar" aria-valuemin="0"
+                        aria-valuemax="5"></div>
+                </div>
+                <h3 style="font-family: constantia; color: rgb(0, 0, 88);">Description</h3>
+                <p>
+                    The 25″” spinner from Bric’s X-TRAVEL collection comes with all the features needed to face every
+                    trip in perfect comfort, without ever forgetting about style. This medium size spinner has been
+                    designed to guarantee maximum lightness.
+                    EXTERIOR: Made in ultra-durable, easy-to-clean satin nylon material; two front large zippered
+                    pockets.
+                    HANDLES: 3 stage pull up handle that can be hidden when not in use. A top and side handle are used
+                    for easy lifting.
+                    INTERIOR: the lined interior includes two useful garment straps for securing clothing and
+                    accessories when traveling and reducing garment creasing; the inside top panel comes with a large
+                    zippered pocket. The holed bottom tray and U-shape frame guarantee stability and lightness at the
+                    same time.
+                    WHEELS: 4 Hinomoto ball bearing double wheels with a new design and wider radius allow a smoother
+                    360° rotation in all directions. The wheels have been designed to be replaced externally with a
+                    “”Allen wrench”” tool.
+                    DETAILS: Bric’s logo, zipper pulls, top and side carry handles are finished in real leather with
+                    contrasting stitching.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br><br>
+
+    <section class="index-link">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="link-area"><a href="index.html"
+                            style="text-decoration: none;color: rgb(0, 0, 88);">
+                            <img src="images/bronx-luggage.png" alt="Bronx Luggage"
+                                style="width: 50px; margin-left: 10%; margin-top: 2%;">
+                            <h4>Bronx Luggage</h4>
+                        </a>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="sitemap.html">Site Map</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="link-area">
+                        <h3>Brands</h3>
+                        <ul>
+                            <li><a href="bric's.html">Bric's</a></li>
+                            <li><a href="briggsandriley.html">Briggs & Riley</a></li>
+                            <li><a href="travelpro.html">Travelpro</a></li>
+                            <li><a href="samsonite.html">Samsonite</a></li>
+                            <li><a href="ricardo.html">Ricardo</a></li>
+                            <li><a href="delsey.html">Delsey</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="link-area">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="laptopbags.html">Laptop Bags</a></li>
+                            <li><a href="handbags.html">Hand Bags</a></li>
+                            <li><a href="businessbags.html">Business Bags</a></li>
+                            <li><a href="rollingdufflebags.html">Rolling Duffle</a></li>
+                            <li><a href="carryonluggage.html">Carry-on</a></li>
+                            <li><a href="hardshellluggages.html">Hard Shell</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="link-area">
+                        <br><br><br><br>
+
+                        <a href="https://www.facebook.com/bronxluggagestore/"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/bronxluggage/"><i class="fa fa-instagram"></i></a>
+                        <br><br>
+                        +1 954-968-3010
+                        <br>
+                        2900 W. Sample Road Pompano Beach, FL
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="index-social">
+        <div class="container">
+            <div class="row index-social-link text-center">
+                <p class="copy-c">Copyright © 2023 Bronx Luggage. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        let rating = 0;
+        let count = 0;
+        let ratings = [];
+
+        function rateProduct(ratingValue) {
+            rating = ratingValue;
+            updateRating();
+            updateProgress();
+            updateCount();
+        }
+
+        function updateRating() {
+            const ratingText = document.getElementById('rating-text');
+            ratingText.innerHTML = 'You rated the product ' + rating + ' out of 5 stars.';
+        }
+
+        function updateCount() {
+            count++;
+            const countElement = document.getElementById('count');
+            countElement.innerHTML = ratings.length;
+        }
+
+        function updateProgress() {
+            ratings.push(rating);
+            const progressElement = document.getElementById('rating-progress');
+            const totalRatings = ratings.reduce((a, b) => a + b, 0);
+            const percentage = (totalRatings / (ratings.length * 5)) * 100 || 0;
+            progressElement.style.width = percentage + '%';
+            progressElement.innerHTML = ((percentage / 100 * 5).toFixed(2));
+        }
+
+
+        $(document).ready(function () {
+            $('.gallery-img').click(function () {
+                $('.gallery-img').removeClass('active');
+                $(this).addClass('active');
+                var mainImgSrc = $(this).data('mdb-img');
+                $('#main-img').attr('src', mainImgSrc);
+            });
+        });
+
+        var btn = $('#button');
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
+
+        btn.on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: 0 }, '300');
+        });
+    </script>
+</body>
+
+</html>
